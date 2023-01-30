@@ -21,6 +21,11 @@ module.exports = {
             loader: 'css-loader'
           }
         ]
+      },
+      // 处理less时候要注意less的版本
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   }
