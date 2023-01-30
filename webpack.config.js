@@ -20,13 +20,16 @@ module.exports = {
             // 单纯的使用css-loader 样式不会生效，因为他只负责解析，但是不会将css加载到html页面上
             loader: 'css-loader'
           },
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     postcssOptions: {
+          //       plugins: ['autoprefixer']
+          //     }
+          //   }
+          // }
           {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: ['autoprefixer']
-              }
-            }
+            loader: 'postcss-loader'
           }
         ]
       },
@@ -36,14 +39,15 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: ['autoprefixer']
-              }
-            }
-          },
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     postcssOptions: {
+          //       plugins: ['autoprefixer']
+          //     }
+          //   }
+          // },
+          'postcss-loader',
           'less-loader'
         ]
       }
