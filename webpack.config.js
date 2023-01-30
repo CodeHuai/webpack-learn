@@ -4,7 +4,8 @@ module.exports = {
   entry: './src/main.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    // assetModuleFilename: "abc.png"
   },
   module: {
     rules: [
@@ -50,6 +51,20 @@ module.exports = {
           'postcss-loader',
           'less-loader'
         ]
+      },
+      {
+        test: /\.(png|jpe?g|svg|gif)$/,
+        // type: 'asset'
+
+        // 打包图片，并且图片有自己的地址，地址会被设置到img或者background中
+        // 缺点：网络请求多
+        // type: "asset/resource"，
+
+        // 图片进行base64的转换，并且直接将编码后的源码放到打包后的js文件中
+        // 缺点：造成js非常大，会造成js代码的下载和解析或者执行的时间过长
+        // type: "asset/inline"
+
+      //   合理的规范应该是：小一点的图片进行base64的设置，大一点的图片直接进行单独打包，形成url地址，单独对图片请求
       }
     ]
   }
