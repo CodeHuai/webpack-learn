@@ -19,13 +19,33 @@ module.exports = {
           {
             // 单纯的使用css-loader 样式不会生效，因为他只负责解析，但是不会将css加载到html页面上
             loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['autoprefixer']
+              }
+            }
           }
         ]
       },
       // 处理less时候要注意less的版本
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['autoprefixer']
+              }
+            }
+          },
+          'less-loader'
+        ]
       }
     ]
   }
