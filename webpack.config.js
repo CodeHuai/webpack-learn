@@ -54,7 +54,19 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|svg|gif)$/,
-        // type: 'asset'
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 60 * 1024
+          }
+        },
+        generator: {
+          // 这种写法会导致在多张图片的情况下，后面的图片会覆盖前面的图片，所以这里不会写死，而是采用占位符的方式
+          // filename: 'example.png'
+          // 占位符：name：原来的图片名称； ext：原来文件的拓展名，也就是原来是.jpg,name打包后还是.jpg; hash：webpack会生成一串hash值，hash:8表示只取前八位hash值
+          // 但是这里也要注意，不同的文件目录下如果有同名的图片名称，最终也还是会导致name的覆盖，所以这里采用hash值
+          filename: 'img/[name]_[hash:8][ext]'
+        }
 
         // 打包图片，并且图片有自己的地址，地址会被设置到img或者background中
         // 缺点：网络请求多
@@ -64,7 +76,7 @@ module.exports = {
         // 缺点：造成js非常大，会造成js代码的下载和解析或者执行的时间过长
         // type: "asset/inline"
 
-      //   合理的规范应该是：小一点的图片进行base64的设置，大一点的图片直接进行单独打包，形成url地址，单独对图片请求
+        //   合理规范应该是：小一点的图片进行base64的设置，大一点的图片直接进行单独打包，形成url地址，单独对图片请求
       }
     ]
   }
