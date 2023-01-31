@@ -1,12 +1,22 @@
 const path = require('path')
 const {VueLoaderPlugin} = require('vue-loader')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {DefinePlugin} = require('webpack')
 
 module.exports = {
+  mode: 'development',
   entry: './src/main.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     // assetModuleFilename: "abc.png"
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.vue', '.jsx', '.ts', 'tsx'],
+    alias: {
+      'utils': path.resolve(__dirname, './src/utils')
+    }
   },
   module: {
     rules: [
@@ -97,6 +107,11 @@ module.exports = {
   },
   plugins: [
     // https://vue-loader.vuejs.org/zh/guide/#vue-cli
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin(),
+    new DefinePlugin({
+      test_definePlugin: '123123'
+    })
   ]
 }
