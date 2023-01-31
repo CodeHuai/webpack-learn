@@ -76,6 +76,17 @@ module.exports = {
         // 图片进行base64的转换，并且直接将编码后的源码放到打包后的js文件中
         // 缺点：造成js非常大，会造成js代码的下载和解析或者执行的时间过长
         // type: "asset/inline"
+      },
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: "babel-loader",
+            // options: {
+            //   plugins: ['@babel/plugin-transform-arrow-functions']
+            // }
+          }
+        ]
       }
     ]
   }
