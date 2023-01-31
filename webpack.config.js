@@ -13,9 +13,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     // assetModuleFilename: "abc.png"
   },
-  devServer: {
-    static: './dist',
-  },
   optimization: {
     runtimeChunk: 'single',
   },
@@ -120,5 +117,8 @@ module.exports = {
     new DefinePlugin({
       test_definePlugin: '123123'
     })
-  ]
+  ],
+  devServer: {
+    hot: true
+  }
 }
