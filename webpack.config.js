@@ -8,9 +8,16 @@ module.exports = {
   mode: 'development',
   entry: './src/main.js',
   output: {
-    filename: 'bundle.js',
+    clean: true,
+    filename: './js/[name]_[hash:8].js',
     path: path.resolve(__dirname, 'dist'),
     // assetModuleFilename: "abc.png"
+  },
+  devServer: {
+    static: './dist',
+  },
+  optimization: {
+    runtimeChunk: 'single',
   },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.jsx', '.ts', 'tsx'],
