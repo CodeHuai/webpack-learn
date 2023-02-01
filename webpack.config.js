@@ -113,7 +113,7 @@ module.exports = {
     // https://vue-loader.vuejs.org/zh/guide/#vue-cli
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({template: "./index.html"}),
     new DefinePlugin({
       test_definePlugin: '123123'
     })
