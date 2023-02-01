@@ -113,6 +113,7 @@ module.exports = {
     // https://vue-loader.vuejs.org/zh/guide/#vue-cli
     new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
+    // 这里指定了模板，而且 ***** 根下面的 index.html 不需要引入dist下面的js文件 *****
     new HtmlWebpackPlugin({template: "./index.html"}),
     new DefinePlugin({
       test_definePlugin: '123123'
